@@ -591,4 +591,15 @@ p { color: var(--text-muted); }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions .btn { width: 100%; text-align: center; }
+
+  /* Full-height hero + a wide landscape photo crops almost all of the
+     image's width away on a tall narrow screen. Shortening the hero
+     keeps more of the photo's width in frame; the padding/scroll-cue
+     tweaks keep the (now less tall) content clear of the fixed header
+     and the bottom edge. */
+  .hero:not(.hero-sm) { height: 64vh; min-height: 460px; }
+  .hero:not(.hero-sm) .hero-content { padding-top: 4rem; }
+  .hero:not(.hero-sm) h1 { margin: 0.7rem 0 1rem; }
+  .hero:not(.hero-sm) .hero-content p { margin-bottom: 1.5rem; }
+  .hero:not(.hero-sm) .scroll-cue { display: none; }
 }
