@@ -204,12 +204,25 @@ p { color: var(--text-muted); }
   inset: 0;
   background: linear-gradient(180deg, rgba(20,16,12,0.35) 0%, rgba(20,16,12,0.55) 100%);
 }
-#homeHeroMedia { background-image: url('../images/hero-couple.jpg'); }
 .hero-content { position: relative; z-index: 2; padding: 0 1.5rem; max-width: 780px; }
 .hero-content .eyebrow { color: #f0d9b5; }
 .hero-content h1 { color: #fff; margin: 1rem 0 1.4rem; }
 .hero-content p { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 520px; margin: 0 auto 2.2rem; }
 .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* Home hero: the photo and the text/buttons are two stacked blocks,
+   never overlaid — a landscape/portrait photo cropped to sit *behind*
+   centered text always ends up hiding part of it under the buttons.
+   The photo shows in full (aspect-ratio matches the source, so nothing
+   is cropped); heading/copy/buttons sit in their own solid-background
+   block below it. hero-sm (inner-page headers, no buttons) keeps the
+   original full-bleed overlay look. */
+.hero:not(.hero-sm) { display: block; height: auto; min-height: 0; }
+.hero:not(.hero-sm) .hero-media { position: relative; inset: auto; height: auto; }
+.hero:not(.hero-sm) .hero-media::after { display: none; }
+.hero:not(.hero-sm) .hero-content { margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+.hero:not(.hero-sm) .scroll-cue { display: none; }
+#homeHeroMedia { background-image: url('../images/hero-couple.jpg'); aspect-ratio: 1200 / 630; }
 
 /* Smaller hero used on inner pages */
 .hero-sm { height: 46vh; min-height: 320px; }
@@ -593,20 +606,11 @@ p { color: var(--text-muted); }
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions .btn { width: 100%; text-align: center; }
 
-  /* The home hero photo is landscape, shot for the wide desktop hero;
-     on mobile it's swapped for a portrait crop of the same shot
-     (rotated 90°). Overlaying text/buttons on top of it (as the
-     desktop hero does) always ends up hiding part of the photo behind
-     the buttons no matter how it's cropped or positioned, since the
-     couple's two faces sit far apart vertically. Instead, the photo is
-     shown in full (aspect-ratio matches the source exactly, so nothing
-     is cropped) as its own block, with the heading/copy/buttons in a
-     separate solid-background block below it — nothing ever sits on
-     top of the photo. */
-  .hero:not(.hero-sm) { display: block; height: auto; min-height: 0; background: #1c1712; }
-  .hero:not(.hero-sm) .hero-media { position: relative; inset: auto; height: auto; aspect-ratio: 630 / 1200; }
-  .hero:not(.hero-sm) .hero-media::after { display: none; }
-  .hero:not(.hero-sm) .hero-content { position: relative; padding: 2.5rem 1.5rem 3rem; max-width: none; }
-  .hero:not(.hero-sm) .scroll-cue { display: none; }
-  #homeHeroMedia { background-image: url('../images/hero-couple-mobile.jpg'); background-position: center; }
+  /* Mobile swaps in a portrait crop of the same shot (rotated 90°) —
+     the desktop landscape original would only show a thin vertical
+     sliver on a narrow screen. Aspect-ratio changes accordingly so
+     the stacked layout above still shows the photo uncropped. Content
+     padding is tightened to suit the narrower column. */
+  .hero:not(.hero-sm) .hero-content { padding: 2.5rem 1.5rem 3rem; max-width: none; }
+  #homeHeroMedia { background-image: url('../images/hero-couple-mobile.jpg'); aspect-ratio: 630 / 1200; }
 }
