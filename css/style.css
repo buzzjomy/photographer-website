@@ -204,6 +204,7 @@ p { color: var(--text-muted); }
   inset: 0;
   background: linear-gradient(180deg, rgba(20,16,12,0.35) 0%, rgba(20,16,12,0.55) 100%);
 }
+#homeHeroMedia { background-image: url('../images/hero-couple.jpg'); }
 .hero-content { position: relative; z-index: 2; padding: 0 1.5rem; max-width: 780px; }
 .hero-content .eyebrow { color: #f0d9b5; }
 .hero-content h1 { color: #fff; margin: 1rem 0 1.4rem; }
@@ -592,14 +593,22 @@ p { color: var(--text-muted); }
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions .btn { width: 100%; text-align: center; }
 
-  /* Full-height hero + a wide landscape photo crops almost all of the
-     image's width away on a tall narrow screen. Shortening the hero
-     keeps more of the photo's width in frame; the padding/scroll-cue
-     tweaks keep the (now less tall) content clear of the fixed header
-     and the bottom edge. */
-  .hero:not(.hero-sm) { height: 64vh; min-height: 460px; }
-  .hero:not(.hero-sm) .hero-content { padding-top: 4rem; }
+  /* The home hero photo is landscape, shot for the wide desktop hero;
+     on mobile it's swapped for a portrait crop of the same shot
+     (rotated 90°) so both people stay in frame instead of a thin
+     vertical sliver of the landscape original.
+
+     The couple's two faces sit ~40% of the image apart vertically, so
+     centered text unavoidably overlaps one of them. Anchoring the
+     content to the top (near his face, echoing the same text-over-face
+     treatment the desktop hero already uses) leaves the entire lower
+     portion of the image — her face, the lotus flowers, their joined
+     hands — fully clear below the buttons. height:auto + min-height
+     lets the hero grow on short screens instead of clipping content. */
+  .hero:not(.hero-sm) { height: auto; min-height: 100vh; align-items: flex-start; }
+  .hero:not(.hero-sm) .hero-content { padding-top: 5.5rem; padding-bottom: 3rem; }
   .hero:not(.hero-sm) h1 { margin: 0.7rem 0 1rem; }
   .hero:not(.hero-sm) .hero-content p { margin-bottom: 1.5rem; }
   .hero:not(.hero-sm) .scroll-cue { display: none; }
+  #homeHeroMedia { background-image: url('../images/hero-couple-mobile.jpg'); background-position: center top; }
 }
