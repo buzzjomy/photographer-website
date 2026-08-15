@@ -595,20 +595,18 @@ p { color: var(--text-muted); }
 
   /* The home hero photo is landscape, shot for the wide desktop hero;
      on mobile it's swapped for a portrait crop of the same shot
-     (rotated 90°) so both people stay in frame instead of a thin
-     vertical sliver of the landscape original.
-
-     The couple's two faces sit ~40% of the image apart vertically, so
-     centered text unavoidably overlaps one of them. Anchoring the
-     content to the top (near his face, echoing the same text-over-face
-     treatment the desktop hero already uses) leaves the entire lower
-     portion of the image — her face, the lotus flowers, their joined
-     hands — fully clear below the buttons. height:auto + min-height
-     lets the hero grow on short screens instead of clipping content. */
-  .hero:not(.hero-sm) { height: auto; min-height: 100vh; align-items: flex-start; }
-  .hero:not(.hero-sm) .hero-content { padding-top: 5.5rem; padding-bottom: 3rem; }
-  .hero:not(.hero-sm) h1 { margin: 0.7rem 0 1rem; }
-  .hero:not(.hero-sm) .hero-content p { margin-bottom: 1.5rem; }
+     (rotated 90°). Overlaying text/buttons on top of it (as the
+     desktop hero does) always ends up hiding part of the photo behind
+     the buttons no matter how it's cropped or positioned, since the
+     couple's two faces sit far apart vertically. Instead, the photo is
+     shown in full (aspect-ratio matches the source exactly, so nothing
+     is cropped) as its own block, with the heading/copy/buttons in a
+     separate solid-background block below it — nothing ever sits on
+     top of the photo. */
+  .hero:not(.hero-sm) { display: block; height: auto; min-height: 0; background: #1c1712; }
+  .hero:not(.hero-sm) .hero-media { position: relative; inset: auto; height: auto; aspect-ratio: 630 / 1200; }
+  .hero:not(.hero-sm) .hero-media::after { display: none; }
+  .hero:not(.hero-sm) .hero-content { position: relative; padding: 2.5rem 1.5rem 3rem; max-width: none; }
   .hero:not(.hero-sm) .scroll-cue { display: none; }
-  #homeHeroMedia { background-image: url('../images/hero-couple-mobile.jpg'); background-position: center top; }
+  #homeHeroMedia { background-image: url('../images/hero-couple-mobile.jpg'); background-position: center; }
 }
