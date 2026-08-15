@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Piper and Muse Photography</title>
+<meta name="description" content="Get in touch with Piper and Muse for wedding and portrait photography enquiries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header page-header is-solid" id="siteHeader">
+  <div class="container">
+    <a href="index.html" class="logo">Piper and Muse</a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero hero-sm">
+  <div class="hero-media" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Alleppey%20Boat%20houses.jpg?width=1800');"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Get In Touch</span>
+    <h1>Contact</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <span class="eyebrow">Say Hello</span>
+        <h2>Tell us about your day</h2>
+        <p>Fill out the form and we'll get back to you within 48 hours. For urgent enquiries, feel free to call or email directly.</p>
+
+        <div class="contact-detail">
+          <span class="eyebrow">Email</span>
+          <a href="mailto:hello@piperandmuse.example">hello@piperandmuse.example</a>
+        </div>
+        <div class="contact-detail">
+          <span class="eyebrow">Phone</span>
+          <a href="tel:+10000000000">+1 (000) 000-0000</a>
+        </div>
+        <div class="contact-detail">
+          <span class="eyebrow">Based In</span>
+          <span>Your City, Your Region — available for travel</span>
+        </div>
+
+        <div class="social-links">
+          <a href="#">Instagram</a>
+          <a href="#">Pinterest</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <!--
+          FORM SETUP: This form posts to Formspree so submissions arrive by
+          email — no backend required. To activate it:
+            1. Create a free account at https://formspree.io
+            2. Create a new form and copy its endpoint (looks like
+               https://formspree.io/f/xxxxxxx)
+            3. Replace YOUR_FORM_ID below with that ID.
+          Until then, submissions will show a friendly error instead of
+          sending, so nothing is silently lost.
+        -->
+        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventType">I'm Interested In</label>
+              <select id="eventType" name="eventType" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="Wedding">Wedding Photography</option>
+                <option value="Portrait">Portrait / People Session</option>
+                <option value="Other">Something Else</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="eventDate">Event Date (if known)</label>
+              <input type="date" id="eventDate" name="eventDate">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell Me About Your Day / Vision</label>
+            <textarea id="message" name="message" required placeholder="Venue, location, number of guests, style you love — anything that helps us picture it."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-accent">Send Enquiry</button>
+          <p class="form-note">By submitting, you agree to be contacted about your enquiry. No spam, ever.</p>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo">Piper and Muse</span>
+        <p>Wedding and portrait photography rooted in genuine, unscripted moments.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:hello@piperandmuse.example">hello@piperandmuse.example</a></li>
+          <li><a href="tel:+10000000000">+1 (000) 000-0000</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Piper and Muse Photography. All rights reserved.</span>
+      <span>Placeholder content — replace with real studio details.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
