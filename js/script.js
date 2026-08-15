@@ -114,18 +114,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---------- Contact form (AJAX submit to Formspree) ---------- */
+  /* ---------- Contact form (AJAX submit to FormSubmit.co) ---------- */
   var form = document.getElementById('contactForm');
   if (form) {
     var status = document.getElementById('formStatus');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
-      if (form.action.indexOf('YOUR_FORM_ID') !== -1) {
-        status.textContent = 'Form is not connected yet — set up a Formspree endpoint in contact.html (see the comment above the <form> tag).';
-        status.className = 'form-status error';
-        return;
-      }
 
       var submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
@@ -137,16 +131,18 @@ document.addEventListener('DOMContentLoaded', function () {
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       }).then(function (response) {
-        if (response.ok) {
-          status.textContent = 'Thank you! Your enquiry has been sent — I\'ll be in touch within 48 hours.';
-          status.className = 'form-status success';
-          form.reset();
-        } else {
-          status.textContent = 'Something went wrong sending your message. Please try emailing directly instead.';
-          status.className = 'form-status error';
-        }
+        return response.json().catch(function () { return {}; }).then(function (data) {
+          if (response.ok && data.success !== 'false') {
+            status.textContent = 'Thank you! Your enquiry has been sent — we\'ll be in touch within 48 hours.';
+            status.className = 'form-status success';
+            form.reset();
+          } else {
+            status.textContent = 'Something went wrong sending your message. Please try emailing or calling directly instead.';
+            status.className = 'form-status error';
+          }
+        });
       }).catch(function () {
-        status.textContent = 'Something went wrong sending your message. Please try emailing directly instead.';
+        status.textContent = 'Something went wrong sending your message. Please try emailing or calling directly instead.';
         status.className = 'form-status error';
       }).finally(function () {
         submitBtn.disabled = false;

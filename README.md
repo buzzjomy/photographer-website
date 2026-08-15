@@ -26,13 +26,9 @@ photographer-website/
    ```
    These are real, CC BY-SA-licensed photos by independent Kerala photographers — not this studio's own work — used to make the layout look right while real portfolio photos are gathered. **They must be replaced with the actual photographer's images before launch.** If any are kept in a live deployment, you're legally required to credit them per `ATTRIBUTIONS.md` (CC BY-SA requires attribution). To swap: put your images in the `images/` folder and reference them locally, e.g. `images/wedding-01.jpg`. Keep similar aspect ratios to what's there now (tall ~3:4 for most gallery items, wide ~4:3 for the ones marked `wide`) so the grid layout doesn't break.
 
-3. **Contact form → email notifications** — the form on `contact.html` is wired to send submissions straight to your inbox via [Formspree](https://formspree.io) (free tier, no backend needed):
-   1. Create a free Formspree account and a new form.
-   2. Copy the endpoint it gives you (`https://formspree.io/f/xxxxxxx`).
-   3. In `contact.html`, replace `YOUR_FORM_ID` in the `<form action="...">` line with your real ID.
-   4. Submissions will now arrive by email, and the page shows a success/error message without reloading.
+3. **Contact form → email notifications** — the form on `contact.html` is wired to [FormSubmit.co](https://formsubmit.co), which forwards submissions straight to **infoanishlal@gmail.com** with no account or backend needed. **One-time activation required:** the first submission triggers a confirmation email from FormSubmit to that address — someone with access to the inbox must click "Activate Form" before any submissions (including that first one) actually get delivered. Send a real test enquiry after deploying and confirm the activation email arrives and gets clicked; until then the page will still show "sent successfully" but the message won't reach the inbox. To change the destination address later, edit the email in the form's `action` URL in `contact.html` and repeat the activation step.
 
-4. **Contact details & social links** — update the email, phone, and Instagram/Pinterest/Facebook links in `contact.html` and in the footer of every page.
+4. **Social links** — the footer's Instagram/Pinterest/Facebook links are still placeholder `#` anchors in `contact.html` and the footer of every page; point them at the real profiles once they exist. Email and phone are already wired to real values.
 
 ## Running locally
 
@@ -45,10 +41,12 @@ No build step needed. Either:
   ```
   then visit `http://localhost:8000`.
 
-## Deploying (free options)
+## Deploying
 
+**This site is live** at **https://buzzjomy.github.io/photographer-website/**, served via GitHub Pages from this repo's `main` branch. Any commit pushed to `main` redeploys automatically within about a minute.
+
+Other free options, if you ever want to move it:
 - **Netlify**: drag-and-drop the whole folder onto [app.netlify.com/drop](https://app.netlify.com/drop).
-- **GitHub Pages**: push this folder to a GitHub repo, then enable Pages in repo settings (root or `/docs`).
 - **Vercel**: `vercel` CLI or import the repo at vercel.com — zero config needed for static sites.
 
 All of these give you a mobile-friendly, HTTPS URL the photographer can share and check from their phone.
