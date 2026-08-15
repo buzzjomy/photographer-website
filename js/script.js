@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
       submitBtn.disabled = true;
       status.textContent = 'Sending...';
       status.className = 'form-status';
+      status.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
       fetch(form.action, {
         method: 'POST',
